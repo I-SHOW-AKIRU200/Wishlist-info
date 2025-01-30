@@ -76,7 +76,7 @@ def home():
     </head>
     <body>
         <div class="container">
-            <h2>Free Fire Player Info</h2>
+            <h2>Akiru Free Fire Info</h2>
             <input type="text" id="uid" placeholder="Enter UID">
             <input type="text" id="region" placeholder="Enter Region">
             <button onclick="fetchPlayerInfo()">Get Info</button>
