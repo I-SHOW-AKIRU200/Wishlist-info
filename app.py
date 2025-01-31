@@ -4,8 +4,8 @@ import time
 
 app = Flask(__name__)
 
-API_KEY = "Starexx"
-API_URL = "https://freefiresite.vercel.app/api/info"
+API_KEY = "ADITYA"
+API_URL = "https://player-info-final.vercel.app"
 OUTFIT_API_URL = "https://ff-community-api.vercel.app/icons?id={}"
 
 def format_timestamp(timestamp):
@@ -223,7 +223,7 @@ def wishlist_info():
         return jsonify({"text": "Error: UID and Region are required."}), 400
 
     # Fetch wishlist data from the given API
-    wishlist_url = f"https://ariflex-labs-wishlist-api.vercel.app/items_info?uid={uid}&region={region}"
+    wishlist_url = f"https://player-info-final.vercel.app/ADITYA-PLAYER-INFO?uid={uid}&region={region}"
     response = requests.get(wishlist_url)
 
     if response.status_code != 200:
