@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wishlist Viewer</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging.js"></script>
 </head>
 <body>
     <div class="header">
@@ -17,6 +20,38 @@
         <div class="loading">Fetching data...</div>
         <div id="wishlist-container"></div>
     </div>
+
     <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <script>
+      // Firebase configuration
+      const firebaseConfig = {
+          apiKey: "AIzaSyCjHs1Ahu2T1YCa3ysA6L7CkCDQ0oefc8I",
+          authDomain: "team-akiru.firebaseapp.com",
+          projectId: "team-akiru",
+          storageBucket: "team-akiru.firebasestorage.app",
+          messagingSenderId: "255938078202",
+          appId: "255938078202:web:5c9bef64873bda7ce8704"
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const messaging = firebase.messaging();
+
+      // Request permission for notifications
+      Notification.requestPermission().then((permission) => {
+          if (permission === "granted") {
+              messaging.getToken().then((token) => {
+                  console.log("FCM Token:", token);
+              });
+          }
+      });
+
+      // Handle incoming notifications
+      messaging.onMessage((payload) => {
+          console.log("Notification received:", payload);
+          alert(payload.notification.title + "\n" + payload.notification.body);
+      });
+    </script>
 </body>
 </html>
